@@ -16,6 +16,6 @@ spec:
         - name: NEW_RELIC_DISTRIBUTED_TRACING_ENABLED
           value: "true"
         - name: NEW_RELIC_LICENSE_KEY
-          value: "43b0c2202cb91fe28e1cd033e36bf97aFFFFNRAL"
+          value: "41683e4227f1e68aa6801086080f8e78FFFFNRAL"
         - name: NEW_RELIC_APP_NAME
-          value: "NodeJsApp"
+          value: "argo_newrelic"
