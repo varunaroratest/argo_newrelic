@@ -1,0 +1,31 @@
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+  name: my-app-set
+  namespace: argocd
+spec:
+  generators:
+    - list:
+        elements:
+          - name: app-1
+            version: v1.0.0
+  template:
+    metadata:
+      name: my-notif-app
+      labels:
+        app.kubernetes.io/managed-by: argocd-applicationset
+      annotations:
+        notifications.argoproj.io/subscribe.on-deployed.newrelic: "1100402771"
+    spec:
+      project: default
+      source:
+        repoURL: https://github.com/hemantbhosale916/argocd.git
+        path: nginx
+        targetRevision: HEAD
+      destination:
+        server: https://kubernetes.default.svc
+        namespace: default
+      syncPolicy:
+        automated:
+          prune: true
+          selfHeal: true

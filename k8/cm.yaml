@@ -1,0 +1,24 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: argocd-notifications-cm
+data:
+  service.newrelic: |
+    apiURL: https://api.newrelic.com
+    apiKey: $newrelic-apiKey
+  context: |
+    argocdUrl: localhost:8080/argocd
+  defaultTriggers: |
+    - on-deployed
+  trigger.on-deployed: |
+    - description: Application is synced and healthy. Triggered once per commit.
+      send:
+      - app-deployed
+      when: app.status.operationState.phase in ['Succeeded'] and app.status.health.status == 'Healthy' and app.status.sync.status == 'Synced'
+  template.app-deployed: |
+    message: Application {{.app.metadata.name}} has successfully deployed.
+    newrelic:
+      description: Application {{.app.metadata.name}} has successfully deployed
+      revision: string
+      user: hemant
+      changelog: string
