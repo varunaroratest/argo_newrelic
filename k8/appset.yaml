@@ -19,9 +19,9 @@ spec:
     spec:
       project: default
       source:
-        repoURL: https://github.com/hemantbhosale916/argocd.git
-        path: nginx
-        targetRevision: HEAD
+        repoURL: https://github.com/varunaroratest/argo_newrelic.git
+        path: k8
+        targetRevision: main
       destination:
         server: https://kubernetes.default.svc
         namespace: default
