@@ -15,7 +15,9 @@ spec:
       labels:
         app.kubernetes.io/managed-by: argocd-applicationset
       annotations:
-        notifications.argoproj.io/subscribe.on-deployed.newrelic: "1100402771"
+        notifications.argoproj.io/subscribe.on-deployed.newrelic: ""
+        componentVersion: "v4.3.2"
+        component: "test-application"
     spec:
       project: default
       source:
