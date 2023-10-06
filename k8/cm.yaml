@@ -19,7 +19,7 @@ data:
     message: Application {{.app.metadata.labels.component}} has successfully deployed.
     newrelic:
       description: Application {{.app.metadata.labels.component}} has successfully deployed
-      revision: {{componentVersion}}
+      revision: {{.app.metadata.labels.componentVersion}}
       user: shaifali
       changelog: string
 
