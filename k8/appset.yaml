@@ -9,6 +9,11 @@ spec:
         elements:
           - name: app-1
             version: v1.0.0
+    - configMap:
+        name: argocd-notifications-cm
+        namespace: argocd
+        files:
+          - appset.yaml
   template:
     metadata:
       name: my-app-set
