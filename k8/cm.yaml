@@ -16,10 +16,10 @@ data:
       - app-deployed
       when: app.status.operationState.phase in ['Succeeded'] and app.status.health.status == 'Healthy' and app.status.sync.status == 'Synced'
   template.app-deployed: |
-    message: Application {{.metadata.labels.component}} has successfully deployed.
+    message: Application {{.spec.template.metadata.labels.component}} has successfully deployed.
     newrelic:
-      description: Application {{.metadata.labels.component}} has successfully deployed
-      revision: {{.metadata.labels.componentVersion}}
+      description: Application {{.spec.template.metadata.labels.component}} has successfully deployed
+      revision: {{.spec.template.metadata.labels.componentVersion}}
       user: shaifali
       changelog: string
 
