@@ -1,32 +1,35 @@
-# apiVersion: v1
-# kind: ConfigMap
-# metadata:
-#   name: argocd-notifications-cm
-# data:
-#   service.newrelic: |
-#     apiURL: https://api.newrelic.com
-#     apiKey: $newrelic-apiKey
-#   context: |
-#     argocdUrl: localhost:8080/argocd
-#   defaultTriggers: |
-#     - on-deployed
-#   trigger.on-deployed: |
-#     - description: Application is synced and healthy. Triggered once per commit.
-#       send:
-#       - app-deployed
-#       when: app.status.operationState.phase in ['Succeeded'] and app.status.health.status == 'Healthy' and app.status.sync.status == 'Synced'
-#   template.app-deployed: |
-#     message: Application {{$.ApplicationSet.spec.template.metadata.labels.componentVersion}} has successfully deployed.
-#     newrelic:
-#       description: Application {{$.ApplicationSet.spec.template.metadata.labels.componentVersion}} has successfully deployed
-#       revision: {{$.ApplicationSet.spec.template.metadata.labels.componentVersion}}
-#       user: shaifali
-#       changelog: string
-
-
-
-
-
-
-
-
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+  name: my-app-set
+  namespace: argocd
+spec:
+  generators:
+    - list:
+        elements:
+          - name: app-1
+            version: v1.0.0
+  template:
+    metadata:
+      name: my-app-set
+      labels:
+        app.kubernetes.io/managed-by: argocd-applicationset
+        version: "v4.3.2"
+        customer: "test-application"
+      annotations:
+        notifications.argoproj.io/subscribe.on-deployed.newrelic: ""
+        componentVersion: "v4.3.2"
+        component: "test-application"
+    spec:
+      project: default
+      source:
+        repoURL: https://github.com/varunaroratest/argo_newrelic.git
+        path: k8
+        targetRevision: main
+      destination:
+        server: https://kubernetes.default.svc
+        namespace: default
+      syncPolicy:
+        automated:
+          prune: true
+          selfHeal: true          
