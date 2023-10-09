@@ -18,4 +18,4 @@ spec:
         - name: NEW_RELIC_LICENSE_KEY
           value: "41683e4227f1e68aa6801086080f8e78FFFFNRAL"
         - name: NEW_RELIC_APP_NAME
-          value: "my-app-set"
+          value: "NodeJsApp"
