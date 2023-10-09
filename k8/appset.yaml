@@ -1,36 +1,35 @@
-# apiVersion: argoproj.io/v1alpha1
-# kind: ApplicationSet
-# metadata:
-#   name: my-app-set
-#   namespace: argocd
-# spec:
-#   generators:
-#     - list:
-#         elements:
-#           - name: app-1
-#             version: v1.0.0
-#   template:
-#     metadata:
-#       name: my-app-set
-#       labels:
-#         app.kubernetes.io/managed-by: argocd-applicationset
-#         componentVersion: "v4.3.2"
-#         component: "test-application"
-#       annotations:
-#         notifications.argoproj.io/subscribe.on-deployed.newrelic: ""
-#         componentVersion: "v4.3.2"
-#         component: "test-application"
-#     spec:
-#       project: default
-#       source:
-#         repoURL: https://github.com/varunaroratest/argo_newrelic.git
-#         path: k8
-#         targetRevision: main
-#       destination:
-#         server: https://kubernetes.default.svc
-#         namespace: default
-#       syncPolicy:
-#         automated:
-#           prune: true
-#           selfHeal: true
-          
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+  name: my-app-set
+  namespace: argocd
+spec:
+  generators:
+    - list:
+        elements:
+          - name: app-1
+            version: v1.0.0
+  template:
+    metadata:
+      name: my-app-set
+      labels:
+        app.kubernetes.io/managed-by: argocd-applicationset
+        version: "v4.3.2"
+        customer: "test-application"
+      annotations:
+        notifications.argoproj.io/subscribe.on-deployed.newrelic: ""
+        componentVersion: "v4.3.2"
+        component: "test-application"
+    spec:
+      project: default
+      source:
+        repoURL: https://github.com/varunaroratest/argo_newrelic.git
+        path: k8
+        targetRevision: main
+      destination:
+        server: https://kubernetes.default.svc
+        namespace: default
+      syncPolicy:
+        automated:
+          prune: true
+          selfHeal: true          
