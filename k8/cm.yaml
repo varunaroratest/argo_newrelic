@@ -12,13 +12,13 @@ data:
     - on-deployed
   trigger.on-deployed: |
     - description: Application is synced and healthy. Triggered once per commit.
-      when: app.status.operationState.phase in ['Succeeded'] and app.status.health.status == 'Healthy' and app.status.sync.status == 'Synced'
       send:
-      - app-deployed      
+      - app-deployed
+      when: app.status.operationState.phase in ['Succeeded'] and app.status.health.status == 'Healthy' and app.status.sync.status == 'Synced'
   template.app-deployed: |
-    message: Application has successfully deployed.
+    message: Application {{.app.metadata.name}} has successfully deployed.
     newrelic:
-      description: Application has successfully deployed
-      revision: v4.2
-      user: shaifali
-      changelog: string
+      description: Application {{.app.metadata.name}} has successfully deployed
+      revision: string
+      user: hemant
+      changelog: string 
