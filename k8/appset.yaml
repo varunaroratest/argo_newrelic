@@ -17,7 +17,7 @@ spec:
         version: "v4.3.2"
         customer: "test-application"
       annotations:
-        notifications.argoproj.io/subscribe.on-deployed.newrelic: "1113656352"
+        notifications.argoproj.io/subscribe.on-deployed.newrelic: ""
         componentVersion: "v4.3.2"
         component: "test-application"
     spec:
