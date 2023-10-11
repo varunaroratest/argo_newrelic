@@ -15,8 +15,7 @@ data:
       send:
       - app-deployed
       when: app.status.operationState.phase in ['Succeeded'] and app.status.health.status == 'Healthy' and app.status.sync.status == 'Synced'
-  template.app-deployed: |
-    message: Application {{.app.metadata.name}} has successfully deployed.
+  template.app-deployed: |    
     newrelic:
       description: Application {{.app.spec.template.metadata.labels.version}} has successfully deployed
- 
+      
