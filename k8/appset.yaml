@@ -31,7 +31,7 @@ spec:
           #   - values.yaml
           # Release name override (defaults to application name)
           releaseName: "test-application"
-          version: "v4.3.2"
+          releaseVersion: "v4.3.2"
       destination:
         server: https://kubernetes.default.svc
         namespace: default
