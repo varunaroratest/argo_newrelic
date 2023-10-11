@@ -25,13 +25,7 @@ spec:
       source:
         repoURL: https://github.com/varunaroratest/argo_newrelic.git
         path: k8
-        targetRevision: main
-        helm:
-          # valueFiles:
-          #   - values.yaml
-          # Release name override (defaults to application name)
-          releaseName: "test-application"
-          releaseVersion: "v4.3.2"
+        targetRevision: main        
       destination:
         server: https://kubernetes.default.svc
         namespace: default
