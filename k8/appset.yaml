@@ -11,7 +11,7 @@ spec:
             version: v1.0.0
   template:
     metadata:
-      name: my-app-test
+      name: my
       labels:
         app.kubernetes.io/managed-by: argocd-applicationset
         version: "v4.3.2"
