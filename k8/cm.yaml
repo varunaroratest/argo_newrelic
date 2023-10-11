@@ -19,5 +19,4 @@ data:
   template.app-deployed: |
     message: Application {{.app.metadata.name}} has successfully deployed.
     newrelic:
-      description: Application {{.app.metadata.name}} has successfully deployed
-      revision: "{{.app.status.sync.revision}}"
+      description: Application {{.app.metadata.name}} has successfully deployed      
