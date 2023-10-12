@@ -15,7 +15,7 @@ spec:
       labels:
         app.kubernetes.io/managed-by: argocd-applicationset
         version: "v4.3.2"
-        customer: "test-application"
+        customer: "nodeargoapp"
       annotations:
         notifications.argoproj.io/subscribe.on-deployed.newrelic: "1076073543"
         componentVersion: "v4.3.2"
