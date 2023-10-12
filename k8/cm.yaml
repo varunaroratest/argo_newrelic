@@ -7,8 +7,6 @@ data:
   service.newrelic: |
     apiURL: https://api.newrelic.com
     apiKey: $newrelic-apiKey
-  context: |
-    argocdUrl:  
   defaultTriggers: |
     - on-deployed
   trigger.on-deployed: |
