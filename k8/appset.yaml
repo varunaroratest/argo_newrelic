@@ -28,7 +28,7 @@ spec:
         targetRevision: main        
       destination:
         server: https://kubernetes.default.svc
-        namespace: testnamespace
+        namespace: default
       syncPolicy:
         automated:
           prune: true
