@@ -18,7 +18,7 @@ spec:
         customer: "nodeargoapp"
       annotations:
         notifications.argoproj.io/subscribe.on-deployed.newrelic: "1076073543"
-        componentVersion: "v4.3.2"
+        componentVersion: v4.3.2
         component: "test-application"
     spec:
       project: default
