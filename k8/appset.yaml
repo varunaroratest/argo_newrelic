@@ -2,7 +2,7 @@ apiVersion: argoproj.io/v1alpha1
 kind: ApplicationSet
 metadata:
   name: my-app-test
-  namespace: argocd
+  namespace: testnamespace
 spec:
   generators:
     - list:
