@@ -2,7 +2,7 @@ apiVersion: v1
 kind: ConfigMap
 metadata:
   name: argocd-notifications-cm
-  namespace: testnamespace
+  namespace: argocd
 data:
   service.newrelic: |
     apiURL: https://api.newrelic.com
