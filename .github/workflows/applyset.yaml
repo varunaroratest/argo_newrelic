@@ -1,40 +1,29 @@
-name: Deploy Application
+name: Add Secret to Azure Cluster
 
 on:
   push:
     branches:
       - main
-  workflow_dispatch:
 
 jobs:
-  deploy:
+  add_secret:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
-      - uses: azure/setup-kubectl@v3
-        id: install
-      - name: Install argocd CLI
-        run: |
-          curl -sSL -o /usr/local/bin/argocd https://github.com/argoproj/argo-cd/releases/download/v2.5.8/argocd-linux-amd64
-          chmod +x /usr/local/bin/argocd
-          argocd login cd.argoproj.io --core
-          kubectl get pods -n argocd
-          kubectl apply -n argocd -f https://raw.githubusercontent.com/argoproj/argo-cd/v2.5.8/manifests/install.yaml
-          # argocd login $ARGOCD_SERVER --username $ARGOCD_USERNAME --password $ARGOCD_PASSWORD --insecure
-          # ping localhost:8080/argocd
-      # - name: Create namespace
-      #   run: |
-      #     kubectl create namespace testnamespace
-      - name: Deploy application
-        env:
-          # ARGOCD_SERVER: localhost:8080/argocd
-          ARGOCD_USERNAME: admin
-          ARGOCD_PASSWORD: ${{ secrets.ARGOCD_PASSWORD }}
-        run: |
-          cd node/k8/applicationSets
-          # argocd login $ARGOCD_SERVER --username $ARGOCD_USERNAME --password $ARGOCD_PASSWORD --insecure
-          kubectl apply -f cm.yaml
-          kubectl apply -f secret.yaml
-          argocd app create argo-application --repo https://github.com/varunaroratest/argo_newrelic.git --path . --dest-server https://kubernetes.default.svc --dest-namespace default
-          argocd app sync argo-application
+
+      - name: Set up Azure CLI
+        uses: azure/setup-azure-cli@v1
+
+      - name: Log in to Azure
+        uses: azure/login@v1
+        with:
+          creds: ${{ secrets.AZURE_CREDENTIALS }}
+
+      - name: Add secret to cluster
+        uses: azure/CLI@v1
+        with:
+          azcliversion: 2.0.72
+          inlineScript: |
+            az aks get-credentials --resource-group argoResource --name argocluster
+            kubectl apply -f node/k8/secret.yaml
