@@ -25,17 +25,17 @@ jobs:
             --tenant ${{ secrets.TENANT_ID }}
           az account set --subscription ${{ secrets.SUBSCRIPTION_ID }}
       
-      - name: Install kubectl
-        uses: azure/kubectl@v1
-        with:
-          install-yaml: true
+      # - name: Install kubectl
+      #   uses: azure/kubectl@v1
+      #   with:
+      #     install-yaml: true
 
-      - name: Get secret value
-        id: get_secret
-        run: |
-          secret_value=$(kubectl get secret argocd-notifications-secret -o jsonpath='{.data.newrelic-apiKey}' | base64 --decode)
-          echo "Secret Value: $secret_value"
+      # - name: Get secret value
+      #   id: get_secret
+      #   run: |
+      #     secret_value=$(kubectl get secret argocd-notifications-secret -o jsonpath='{.data.newrelic-apiKey}' | base64 --decode)
+      #     echo "Secret Value: $secret_value"
       
       - name: Add secret to cluster
         run: |
-          kubectl apply -f node/k8/applicationSets/cm.yaml -n default-1697211849217
+          kubectl apply -f k8/cm.yaml -n default-1697211849217
