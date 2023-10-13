@@ -11,7 +11,7 @@ spec:
             version: v1.0.0
   template:
     metadata:
-      name: argo-temp-app
+      name: argo-application
       labels:
         app.kubernetes.io/managed-by: argocd-applicationset
         version: "v1.2.3"
