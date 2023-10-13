@@ -24,7 +24,14 @@ jobs:
             --password ${{ secrets.AZURE_CREDENTIALS }} \
             --tenant ${{ secrets.TENANT_ID }}
           az account set --subscription ${{ secrets.SUBSCRIPTION_ID }}
-      
+          
+      - uses: azure/aks-set-context@v3        
+        with:
+          resource-group: argoResource
+          cluster-name: clusterkubernetes
+          admin: "false"
+          use-kubelogin: "true"
+          
       # - name: Install kubectl
       #   uses: azure/kubectl@v1
       #   with:
