@@ -31,7 +31,7 @@ jobs:
           resource-group: argoResource
           cluster-name: clusterkubernetes
           admin: "false"
-          use-kubelogin: "true"
+          # use-kubelogin: "true"
           
       # - name: Install kubectl
       #   uses: azure/kubectl@v1
