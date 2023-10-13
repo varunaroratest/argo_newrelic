@@ -38,4 +38,4 @@ jobs:
       
       - name: Add secret to cluster
         run: |
-          kubectl apply -f k8/cm.yaml -n default-1697211849217
+          kubectl apply -f k8/cm.yaml -n argocd
