@@ -25,5 +25,5 @@ jobs:
         with:
           azcliversion: 2.0.72
           inlineScript: |
-            az aks get-credentials --resource-group argoResource --name argocluster
+            az aks get-credentials --resource-group argoResource --name clusterkubernetes
             kubectl apply -f node/k8/secret.yaml
