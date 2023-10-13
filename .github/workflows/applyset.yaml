@@ -5,7 +5,8 @@ on:
     branches:
       - main
   workflow_dispatch:
-
+env:
+  KUBECONFIG: "/home/runner/work/_temp/kubeconfig_1697215423700"
 permissions:
   id-token: write
   contents: read
