@@ -50,8 +50,9 @@ jobs:
       
       - name: Add secret to cluster
         run: |
-          cd node/k8/applicationSets
+          cd k8/
           argocd login $ARGOCD_SERVER --username admin --password $ARGOCD_PASSWORD --insecure
+          echo "login to argocd"
           kubectl apply -f cm.yaml
           kubectl apply -f secret.yaml
           argocd app create argo-application --repo https://github.com/masterysystems/devops-poc-test-workflow.git --path . --dest-server https://kubernetes.default.svc --dest-namespace default
