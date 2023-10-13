@@ -22,7 +22,7 @@ spec:
       project: argo-proj
       source:
         repoURL: https://github.com/varunaroratest/argo_newrelic.git
-        path: k8
+        path: node/k8
         targetRevision: main        
       destination:
         server: https://kubernetes.default.svc
