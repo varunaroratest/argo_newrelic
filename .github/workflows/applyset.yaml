@@ -18,9 +18,9 @@ jobs:
         run: |
           curl -sSL -o /usr/local/bin/argocd https://github.com/argoproj/argo-cd/releases/download/v2.5.8/argocd-linux-amd64
           chmod +x /usr/local/bin/argocd
-      - name: Create namespace
-        run: |
-          kubectl create namespace testnamespace
+      # - name: Create namespace
+      #   run: |
+      #     kubectl create namespace testnamespace
       - name: Deploy application
         env:
           ARGOCD_SERVER: localhost:8080
