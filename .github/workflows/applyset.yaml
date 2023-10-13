@@ -25,10 +25,5 @@ jobs:
             --tenant ${{ secrets.TENANT_ID }}
           az account set --subscription ${{ secrets.SUBSCRIPTION_ID }}
       - name: Add secret to cluster
-        uses: azure/CLI@v1
-        with:
-          azcliversion: 2.0.72
-          inlineScript: |
-            az account set --subscription ${{ secrets.SUBSCRIPTION_ID }}
-            az aks get-credentials --resource-group argoResource --name clusterkubernetes            
-            kubectl apply -f node/k8/secret.yaml
+        run: |
+          kubectl apply -f node/k8/secret.yaml
