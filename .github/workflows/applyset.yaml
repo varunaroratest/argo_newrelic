@@ -28,7 +28,7 @@ jobs:
           ARGOCD_PASSWORD: ${{ secrets.ARGOCD_PASSWORD }}
         run: |
           cd node/k8/applicationSets
-          argocd login $ARGOCD_SERVER --username $ARGOCD_USERNAME --password $ARGOCD_PASSWORD --insecure
+          # argocd login $ARGOCD_SERVER --username $ARGOCD_USERNAME --password $ARGOCD_PASSWORD --insecure
           kubectl apply -f cm.yaml
           kubectl apply -f secret.yaml
           argocd app create argo-application --repo https://github.com/varunaroratest/argo_newrelic.git --path . --dest-server https://kubernetes.default.svc --dest-namespace default
