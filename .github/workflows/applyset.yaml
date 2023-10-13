@@ -26,7 +26,7 @@ jobs:
       #     kubectl create namespace testnamespace
       - name: Deploy application
         env:
-          ARGOCD_SERVER: localhost:8080/argocd
+          # ARGOCD_SERVER: localhost:8080/argocd
           ARGOCD_USERNAME: admin
           ARGOCD_PASSWORD: ${{ secrets.ARGOCD_PASSWORD }}
         run: |
