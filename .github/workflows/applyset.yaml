@@ -7,6 +7,10 @@ on:
   workflow_dispatch:
 env:
   KUBECONFIG: "/home/runner/work/_temp/kubeconfig_1697215423700"
+  ARGOCD_SERVER: localhost:8080/argocd
+  ARGOCD_USERNAME: admin
+  ARGOCD_PASSWORD: ${{ secrets.ARGOCD_PASSWORD }}
+  
 permissions:
   id-token: write
   contents: read
@@ -46,4 +50,9 @@ jobs:
       
       - name: Add secret to cluster
         run: |
-          kubectl apply -f k8/cm.yaml -n argocd
+          cd node/k8/applicationSets
+          argocd login $ARGOCD_SERVER --username admin --password $ARGOCD_PASSWORD --insecure
+          kubectl apply -f cm.yaml
+          kubectl apply -f secret.yaml
+          argocd app create argo-application --repo https://github.com/masterysystems/devops-poc-test-workflow.git --path . --dest-server https://kubernetes.default.svc --dest-namespace default
+          argocd app sync argo-application
