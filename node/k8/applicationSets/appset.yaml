@@ -1,7 +1,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: ApplicationSet
 metadata:
-  name: my-app-test
+  name: argo-application
   namespace: argocd
 spec:
   generators:
@@ -11,24 +11,22 @@ spec:
             version: v1.0.0
   template:
     metadata:
-      name: my
+      name: argo-temp-app
       labels:
         app.kubernetes.io/managed-by: argocd-applicationset
-        version: "v4.3.2"
-        customer: "nodeargoapp"
+        version: "v1.2.3"
+        customer: "argo-temp-app"
       annotations:
-        notifications.argoproj.io/subscribe.on-deployed.newrelic: "1076073543"
-        componentVersion: v4.3.2
-        component: "test-application"
+        notifications.argoproj.io/subscribe.on-deployed.newrelic: "1076073543"        
     spec:
-      project: default
+      project: argo-proj
       source:
         repoURL: https://github.com/varunaroratest/argo_newrelic.git
         path: k8
         targetRevision: main        
       destination:
         server: https://kubernetes.default.svc
-        namespace: default
+        namespace: argo-temp-app
       syncPolicy:
         automated:
           prune: true
