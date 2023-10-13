@@ -26,4 +26,4 @@ jobs:
           az account set --subscription ${{ secrets.SUBSCRIPTION_ID }}
       - name: Add secret to cluster
         run: |
-          kubectl apply -f node/k8/secret.yaml
+          kubectl apply -f node/k8/applicationSets/secret.yaml
