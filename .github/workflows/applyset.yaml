@@ -29,6 +29,6 @@ jobs:
         with:
           azcliversion: 2.0.72
           inlineScript: |
-            az aks get-credentials --resource-group argoResource --name clusterkubernetes
-            az account set --subscription=1e8ac8e0-f34d-4b6d-a8e8-2ba9e9894a13
-            # kubectl apply -f node/k8/secret.yaml
+            az account set --subscription ${{ secrets.SUBSCRIPTION_ID }}
+            az aks get-credentials --resource-group argoResource --name clusterkubernetes            
+            kubectl apply -f node/k8/secret.yaml
