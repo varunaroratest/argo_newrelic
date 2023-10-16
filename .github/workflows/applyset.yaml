@@ -36,7 +36,10 @@ jobs:
           resource-group: argoResource
           cluster-name: clusterkubernetes
           admin: "true"
-          use-kubelogin: "true"    
+          use-kubelogin: "true"   
+          
+      - uses: azure/setup-kubectl@v1
+        id: install
       
       # - name: Install Argo CD CLI
       #   run: |
@@ -50,8 +53,8 @@ jobs:
         run: |
           cd k8/
           # kubectl create secret generic my-secret --from-literal=my-secret="$NR_KEY" -n argocd
-          envsubst < secret.yaml > secret-substituted.yaml
-          kubectl apply -f secret-substituted.yaml
+          envsubst < secret.yaml | kubectl apply -f secret.yaml 
+          # kubectl apply -f secret-substituted.yaml
           # envsubst < cm.yaml | kubectl apply -f cm.yaml 
           # kubectl apply -f appset.yaml
           # az aks secret add --name clusterkubernetes --resource-group argoResource --secret-name my-new-secret --namespace argocd --keyvaulut-name newrelic --keyvault-secret-name my-new-secret --value "$NR_KEY"
