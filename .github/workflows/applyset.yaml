@@ -10,6 +10,7 @@ env:
   ARGOCD_SERVER: localhost:8080/argocd
   ARGOCD_USERNAME: admin
   ARGOCD_PASSWORD: ${{ secrets.argo-new-cluster }}
+  NEWRELIC_APIKEY: ${{ secrets.NEWRELIC_APIKEY }}
   
 permissions:
   id-token: write
@@ -47,20 +48,24 @@ jobs:
       #   run: |
       #     secretValue=$(az keyvault secret show --name newrelic-api-key --vault-name newrelic-api-Key --query value --output tsv)
       #     echo "Secret Value: $secretValue"
-      - name: Install Argo CD CLI
-        run: |
-          curl -LO https://github.com/argoproj/argo-cd/releases/latest/download/argocd-linux-amd64
-          mv argocd-linux-amd64 /usr/local/bin/argocd
-          chmod +x /usr/local/bin/argocd
+      
+      # - name: Install Argo CD CLI
+      #   run: |
+      #     curl -LO https://github.com/argoproj/argo-cd/releases/latest/download/argocd-linux-amd64
+      #     mv argocd-linux-amd64 /usr/local/bin/argocd
+      #     chmod +x /usr/local/bin/argocd
           
       - name: Add secret to cluster
         run: |
           cd k8/
+          envsubst < cm.yaml | kubectl apply -f cm.yaml -n argocd
+          envsubst < secret.yaml | kubectl apply -f secret.yaml -n argocd
+          kubectl apply -f appset.yaml -n argocd
           # argocd login $ARGOCD_SERVER --username admin --password $ARGOCD_PASSWORD --insecure
           # echo "login to argocd"
-          kubectl apply -f cm.yaml -n argocd
-          kubectl apply -f secret.yaml -n argocd
-          kubectl apply -f appset.yaml -n argocd
+          # kubectl apply -f cm.yaml -n argocd
+          # kubectl apply -f secret.yaml -n argocd
+         
           # argocd app create argo-application --repo https://github.com/masterysystems/devops-poc-test-workflow.git --path . --dest-server https://kubernetes.default.svc --dest-namespace default
           # argocd login localhost:8080 --insecure --username admin --password FMO8-KjVF4jdbN-B
           # argocd app sync argo-application
