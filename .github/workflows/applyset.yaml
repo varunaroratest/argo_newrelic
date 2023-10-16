@@ -42,8 +42,9 @@ jobs:
         with:
           namespace: 'default'
           secret-type: 'generic'
-          secret-name: azure-storage
+          secret-name: new-relic
           data: ${{ secrets.NEWRELIC_APIKEY }}
+          
       # - name: Install kubectl
       #   uses: azure/kubectl@v1
       #   with:
