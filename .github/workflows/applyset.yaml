@@ -38,12 +38,12 @@ jobs:
           admin: "true"
           use-kubelogin: "true"
           
-      - uses: azure/k8s-create-secret@v2
-        with:
-          namespace: 'default'
-          secret-type: 'generic'
-          secret-name: new-relic
-          data: "newvalue"
+      # - uses: azure/k8s-create-secret@v2
+      #   with:
+      #     namespace: 'default'
+      #     secret-type: 'generic'
+      #     secret-name: new-relic
+      #     data: "newvalue"
           
       # - name: Install kubectl
       #   uses: azure/kubectl@v1
@@ -67,6 +67,7 @@ jobs:
           NR_KEY: ${{ secrets.NEWRELIC_APIKEY }}
         run: |
           cd k8/
+          kubectl create secret generic my-secret \ --from-literal=your-key="$NR_KEY"
           envsubst < cm.yaml | kubectl apply -f cm.yaml
           envsubst < secret.yaml | kubectl apply -f secret.yaml
           kubectl apply -f appset.yaml -n argocd
