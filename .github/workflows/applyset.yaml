@@ -61,5 +61,5 @@ jobs:
           kubectl apply -f cm.yaml -n argocd
           kubectl apply -f secret.yaml -n argocd
           argocd app create argo-application --repo https://github.com/masterysystems/devops-poc-test-workflow.git --path . --dest-server https://kubernetes.default.svc --dest-namespace default
-          argocd login localhost:8880 --insecure --username admin --password FMO8-KjVF4jdbN-B
+          argocd login localhost:8080 --insecure --username admin --password FMO8-KjVF4jdbN-B
           argocd app sync argo-application
