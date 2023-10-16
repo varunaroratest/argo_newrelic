@@ -6,7 +6,7 @@ metadata:
 data:
   service.newrelic: |
     apiURL: https://api.newrelic.com
-    apiKey: ${{ secret.NEWRELIC_APIKEY }}
+    apiKey: $newrelic-apiKey
   defaultTriggers: |
     - on-deployed
   trigger.on-deployed: |
