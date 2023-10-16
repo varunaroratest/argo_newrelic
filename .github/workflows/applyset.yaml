@@ -38,7 +38,7 @@ jobs:
           admin: "true"
           use-kubelogin: "true"
           
-      - uses: azure/k8s-create-secret@v2
+      - uses: azure/k8s-create-secret@v4.0
         with:
           namespace: 'default'
           secret-type: 'generic'
