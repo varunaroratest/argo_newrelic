@@ -48,11 +48,11 @@ jobs:
         env:
           NR_KEY: ${{ secrets.NEWRELIC_APIKEY }}
         run: |
-          cd k8/
+          # cd k8/
           # kubectl create secret generic my-secret --from-literal=mysecret="$NR_KEY"
-          az aks secret add --name clusterkubernetes --resource-group argoResource --secret-name my-new-secret --namespace argocd --keyvaulut-name newrelic --keyvault-secret-name my-new-secret --value "$NR_KEY"
-          envsubst < cm.yaml | kubectl apply -f cm.yaml
-          envsubst < secret.yaml | kubectl apply -f secret.yaml
+          # az aks secret add --name clusterkubernetes --resource-group argoResource --secret-name my-new-secret --namespace argocd --keyvaulut-name newrelic --keyvault-secret-name my-new-secret --value "$NR_KEY"
+          envsubst < k8s/cm.yaml | kubectl apply -f -
+          envsubst < k8s/secret.yaml | kubectl apply -f -
           kubectl apply -f appset.yaml -n argocd
           # argocd login $ARGOCD_SERVER --username admin --password $ARGOCD_PASSWORD --insecure
           # echo "login to argocd"
