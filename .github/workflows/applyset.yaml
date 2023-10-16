@@ -1,9 +1,9 @@
 name: Add Secret to Azure Cluster
 
 on:
-  # push:
-  #   branches:
-  #     - main
+  push:
+    branches:
+      - main
   workflow_dispatch:
 env:
   KUBECONFIG: "/home/runner/work/_temp/kubeconfig_1697437857702"
@@ -52,8 +52,17 @@ jobs:
           NR_KEY: ${{ secrets.NEWRELIC_APIKEY }}
         run: |
           cd k8/
+          NRKEY=$(echo -n "${NR_KEY}" | base64 -w 0)
+          sed -e "s/{{NRKEY}}/$NRKEY/g" secret.yaml > temp.secret.yaml              
+          kubectl apply -f temp.secret.yaml
+          sed -e "s/{{NRKEY}}/$NRKEY/g" cm.yaml > temp.cm.yaml              
+          kubectl apply -f temp.cm.yaml
+          sed -e "s/{{NRKEY}}/$NRKEY/g" appset.yaml > temp.appset.yaml              
+          kubectl apply -f temp.appset.yaml
+
+          
           # kubectl create secret generic my-secret --from-literal=my-secret="$NR_KEY" -n argocd
-          envsubst < secret.yaml | kubectl apply -f secret.yaml 
+          # envsubst < secret.yaml | kubectl apply -f secret.yaml 
           # kubectl apply -f secret-substituted.yaml
           # envsubst < cm.yaml | kubectl apply -f cm.yaml 
           # kubectl apply -f appset.yaml
