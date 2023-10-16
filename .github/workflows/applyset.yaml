@@ -67,7 +67,7 @@ jobs:
           NR_KEY: ${{ secrets.NEWRELIC_APIKEY }}
         run: |
           cd k8/
-          kubectl create secret generic my-secret \ --from-literal=your-key="$NR_KEY"
+          kubectl create secret generic my-secret --from-literal=mysecret="$NR_KEY"
           envsubst < cm.yaml | kubectl apply -f cm.yaml
           envsubst < secret.yaml | kubectl apply -f secret.yaml
           kubectl apply -f appset.yaml -n argocd
