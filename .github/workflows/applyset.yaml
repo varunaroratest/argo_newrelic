@@ -37,7 +37,13 @@ jobs:
           cluster-name: clusterkubernetes
           admin: "true"
           use-kubelogin: "true"
-       
+          
+      - uses: azure/k8s-create-secret@v2
+        with:
+          namespace: 'default'
+          secret-type: 'generic'
+          secret-name: azure-storage
+          data: ${{ secrets.NEWRELIC_APIKEY }}
       # - name: Install kubectl
       #   uses: azure/kubectl@v1
       #   with:
