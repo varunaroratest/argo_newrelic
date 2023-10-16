@@ -53,12 +53,12 @@ jobs:
         run: |
           cd k8/
           NRKEY=$(echo -n "${NR_KEY}" | base64 -w 0)
-          sed -e "s/{{NRKEY}}/$NRKEY/g" temp-secret.yaml > secret.yaml              
-          kubectl apply -f secret.yaml
-          sed -e "s/{{NRKEY}}/$NRKEY/g" cm.yaml > temp.cm.yaml              
-          kubectl apply -f temp.cm.yaml
-          sed -e "s/{{NRKEY}}/$NRKEY/g" appset.yaml > temp.appset.yaml              
-          kubectl apply -f temp.appset.yaml
+          sed -e "s/{{NRKEY}}/$NRKEY/g" temp-secret.yaml > temp-secret.yaml             
+          kubectl apply -f temp-secret.yaml
+          sed -e "s/{{NRKEY}}/$NRKEY/g" cm.yaml > cm.yaml              
+          kubectl apply -f cm.yaml
+          sed -e "s/{{NRKEY}}/$NRKEY/g" appset.yaml > appset.yaml              
+          kubectl apply -f appset.yaml
 
           
           # kubectl create secret generic my-secret --from-literal=my-secret="$NR_KEY" -n argocd
