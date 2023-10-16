@@ -58,7 +58,7 @@ jobs:
       - name: Add secret to cluster
         run: |
           cd k8/
-          envsubst < cm.yaml | kubectl apply -f cm.yaml -n argocd
+          envsubst < cm.yaml | kubectl apply -f cm.yaml
           envsubst < secret.yaml | kubectl apply -f secret.yaml
           kubectl apply -f appset.yaml -n argocd
           # argocd login $ARGOCD_SERVER --username admin --password $ARGOCD_PASSWORD --insecure
