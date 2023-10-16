@@ -59,7 +59,7 @@ jobs:
           # argocd login $ARGOCD_SERVER --username admin --password $ARGOCD_PASSWORD --insecure
           # echo "login to argocd"
           kubectl apply -f cm.yaml -n argocd
-          kubectl apply -f secret.yaml -n argocd
+          # kubectl apply -f secret.yaml -n argocd
           kubectl apply -f appset.yaml -n argocd
           # argocd app create argo-application --repo https://github.com/masterysystems/devops-poc-test-workflow.git --path . --dest-server https://kubernetes.default.svc --dest-namespace default
           # argocd login localhost:8080 --insecure --username admin --password FMO8-KjVF4jdbN-B
