@@ -6,7 +6,7 @@ on:
       - main
   workflow_dispatch:
 env:
-  KUBECONFIG: "/home/runner/work/_temp/kubeconfig_1697437159522"
+  KUBECONFIG: "/home/runner/work/_temp/kubeconfig_1697437265302"
   ARGOCD_SERVER: localhost:8080/argocd
   ARGOCD_USERNAME: admin
   ARGOCD_PASSWORD: ${{ secrets.argo-new-cluster }}
