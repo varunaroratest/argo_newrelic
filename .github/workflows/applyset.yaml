@@ -6,7 +6,7 @@ on:
       - main
   workflow_dispatch:
 env:
-  KUBECONFIG: "/home/runner/work/_temp/kubeconfig_1697215423700"
+  KUBECONFIG: "/home/runner/work/_temp/kubeconfig_1697437159522"
   ARGOCD_SERVER: localhost:8080/argocd
   ARGOCD_USERNAME: admin
   ARGOCD_PASSWORD: ${{ secrets.argo-new-cluster }}
@@ -42,11 +42,11 @@ jobs:
       #   with:
       #     install-yaml: true
 
-      - name: Get secret value
-        id: get_secret
-        run: |
-          secretValue=$(az keyvault secret show --name newrelic-api-key --vault-name newrelic-api-Key --query value --output tsv)
-          echo "Secret Value: $secretValue"
+      # - name: Get secret value
+      #   id: get_secret
+      #   run: |
+      #     secretValue=$(az keyvault secret show --name newrelic-api-key --vault-name newrelic-api-Key --query value --output tsv)
+      #     echo "Secret Value: $secretValue"
       - name: Install Argo CD CLI
         run: |
           curl -LO https://github.com/argoproj/argo-cd/releases/latest/download/argocd-linux-amd64
