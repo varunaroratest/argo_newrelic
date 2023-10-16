@@ -38,12 +38,12 @@ jobs:
           admin: "true"
           use-kubelogin: "true"
           
-      - uses: azure/k8s-create-secret@v4.0
+      - uses: azure/k8s-create-secret@v2
         with:
           namespace: 'default'
           secret-type: 'generic'
           secret-name: new-relic
-          data: ${{ secrets.NEWRELIC_APIKEY }}
+          data: "newvalue"
           
       # - name: Install kubectl
       #   uses: azure/kubectl@v1
