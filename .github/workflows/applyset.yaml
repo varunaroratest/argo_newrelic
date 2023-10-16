@@ -51,7 +51,8 @@ jobs:
           # cd k8/
           kubectl create secret generic my-secret --from-literal=mysecret="$NR_KEY" -n argocd
           # az aks secret add --name clusterkubernetes --resource-group argoResource --secret-name my-new-secret --namespace argocd --keyvaulut-name newrelic --keyvault-secret-name my-new-secret --value "$NR_KEY"
-          envsubst < k8/secret.yaml | kubectl apply -f -
+          envsubst < k8/secret.yaml | tee secret_applied.yaml
+          kubectl apply -f secret_applied.yaml
           envsubst < k8/cm.yaml | kubectl apply -f -
           kubectl apply -f k8/appset.yaml
           # argocd login $ARGOCD_SERVER --username admin --password $ARGOCD_PASSWORD --insecure
