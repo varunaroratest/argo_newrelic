@@ -6,7 +6,7 @@ metadata:
 data:
   service.newrelic: |
     apiURL: https://api.newrelic.com
-    apiKey: <azurekeyvault://newrelic-api-Key/nrKey
+    apiKey: "azurekeyvault://newrelic-api-Key/nrKey"
   defaultTriggers: |
     - on-deployed
   trigger.on-deployed: |
