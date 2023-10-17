@@ -25,11 +25,7 @@ spec:
       source:
         repoURL: https://github.com/varunaroratest/argo_newrelic.git
         path: k8
-        targetRevision: main 
-        - kind: ConfigMap
-          name: argocd-notifications-cm
-        - kind: Secret
-          name: nrKey
+        targetRevision: main         
       destination:
         server: https://kubernetes.default.svc
         namespace: default
