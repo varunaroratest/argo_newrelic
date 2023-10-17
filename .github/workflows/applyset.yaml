@@ -1,9 +1,9 @@
 name: Add Secret to Azure Cluster
 
 on:
-  push:
-    branches:
-      - main
+  # push:
+  #   branches:
+  #     - main
   workflow_dispatch:
 env:
   KUBECONFIG: "/home/runner/work/_temp/kubeconfig_1697437857702"
