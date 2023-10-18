@@ -17,7 +17,7 @@ spec:
         version: "v4.3.2"
         component: "test-application"
     spec:
-      project: argo-proj
+      project: default
       source:
         repoURL: https://github.com/varunaroratest/argo_newrelic.git
         path: node/k8/applicationSets/
