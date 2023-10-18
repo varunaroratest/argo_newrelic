@@ -18,5 +18,5 @@ data:
     message: Application {{.app.metadata.name}} has successfully deployed.
     newrelic:
       description: Application {{.app.metadata.annotations.component}} has successfully deployed with {{.app.metadata.annotations.version}} version.
-
+      revision: {{.app.metadata.annotations.version}}
       
