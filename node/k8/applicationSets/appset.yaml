@@ -11,7 +11,7 @@ spec:
             version: v1.0.0
   template:
     metadata:
-      name: argo-test-application       
+      name: argo-test
       annotations:
         notifications.argoproj.io/subscribe.on-deployed.newrelic: "1076073543" 
         version: "v4.3.2"
