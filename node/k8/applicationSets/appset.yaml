@@ -11,13 +11,11 @@ spec:
             version: v1.0.0
   template:
     metadata:
-      name: argo-application
-      labels:
-        app.kubernetes.io/managed-by: argocd-applicationset
-        version: "v1.2.3"
-        customer: "argo-temp-app"
+      name: argo-test-application       
       annotations:
-        notifications.argoproj.io/subscribe.on-deployed.newrelic: "1076073543"        
+        notifications.argoproj.io/subscribe.on-deployed.newrelic: "1076073543" 
+        version: "v4.3.2"
+        component: "test-application"
     spec:
       project: argo-proj
       source:
